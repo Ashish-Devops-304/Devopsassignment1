@@ -1,10 +1,10 @@
 pipeline {
-    agent { label 'windows' } // Ensure your Windows agent has the 'windows' label
+    agent { label 'slave-node' } // Ensure your Windows agent has the 'slave-node' label
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'your-git-credentials', url: 'https://github.com/your-username/my-jenkins-app.git'
+                git branch: 'main', credentialsId: '304ashishyadav@gmail.com', url: 'https://github.com/Ashish-Devops-304/Devopsassignment1.git'
             }
         }
         stage('Build') {
