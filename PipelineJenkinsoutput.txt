@@ -1,0 +1,118 @@
+Started by user Ashish Yadav
+Obtained Jenkinsfile from git https://github.com/Ashish-Devops-304/Devopsassignment1.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on slave-node in C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+using credential Jenkin-CICD
+Cloning the remote Git repository
+Cloning repository https://github.com/Ashish-Devops-304/Devopsassignment1.git
+ > C:\Program Files\Git\mingw64\bin\git.exe init C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline # timeout=10
+Fetching upstream changes from https://github.com/Ashish-Devops-304/Devopsassignment1.git
+ > C:\Program Files\Git\mingw64\bin\git.exe --version # timeout=10
+ > git --version # 'git version 2.49.0.windows.1'
+using GIT_ASKPASS to set credentials Jenkin Pipeline
+ > C:\Program Files\Git\mingw64\bin\git.exe fetch --tags --force --progress -- https://github.com/Ashish-Devops-304/Devopsassignment1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe config remote.origin.url https://github.com/Ashish-Devops-304/Devopsassignment1.git # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > C:\Program Files\Git\mingw64\bin\git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision 04d776b110a7603fe005c7260cf8593badf73336 (refs/remotes/origin/main)
+Commit message: "Update Jenkinsfile"
+ > C:\Program Files\Git\mingw64\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe checkout -f 04d776b110a7603fe005c7260cf8593badf73336 # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe rev-list --no-walk 04d776b110a7603fe005c7260cf8593badf73336 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+[Pipeline] git
+The recommended git tool is: NONE
+Warning: CredentialId "304ashishyadav@gmail.com" could not be found.
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\mingw64\bin\git.exe rev-parse --resolve-git-dir C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline\.git # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe config remote.origin.url https://github.com/Ashish-Devops-304/Devopsassignment1.git # timeout=10
+Fetching upstream changes from https://github.com/Ashish-Devops-304/Devopsassignment1.git
+ > C:\Program Files\Git\mingw64\bin\git.exe --version # timeout=10
+ > git --version # 'git version 2.49.0.windows.1'
+ > C:\Program Files\Git\mingw64\bin\git.exe fetch --tags --force --progress -- https://github.com/Ashish-Devops-304/Devopsassignment1.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+Checking out Revision 04d776b110a7603fe005c7260cf8593badf73336 (refs/remotes/origin/main)
+ > C:\Program Files\Git\mingw64\bin\git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe checkout -f 04d776b110a7603fe005c7260cf8593badf73336 # timeout=10
+Commit message: "Update Jenkinsfile"
+[Pipeline] }
+ > C:\Program Files\Git\mingw64\bin\git.exe branch -a -v --no-abbrev # timeout=10
+ > C:\Program Files\Git\mingw64\bin\git.exe checkout -b main 04d776b110a7603fe005c7260cf8593badf73336 # timeout=10
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>echo "Building the application..." 
+"Building the application..."
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>mkdir target 
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>echo "Application built successfully!"  1>target\output.txt 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>echo "Running tests..." 
+"Running tests..."
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>if exist target\output.txt (echo "Tests passed!" )  else (exit 1 ) 
+"Tests passed!"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Staging)
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>echo "Deploying to Staging environment..." 
+"Deploying to Staging environment..."
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>mkdir C:\staging 
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>copy target\output.txt C:\staging\ 
+        1 file(s) copied.
+[Pipeline] bat
+
+C:\Users\dhari\Downloads\Slave Jenkins\workspace\DevOps_Assignment1_Pipeline>echo "Deployed to Staging!" 
+"Deployed to Staging!"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Production)
+Stage "Deploy to Production" skipped due to when conditional
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] echo
+Pipeline finished!
+[Pipeline] echo
+Build successful!
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
